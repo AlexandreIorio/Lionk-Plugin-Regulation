@@ -18,7 +18,6 @@ public class FlowMeter : BaseComponent, IMeasurableComponent<int>
     #region Private Fields
 
     // Tolerance to avoid multiple events in ms
-    private const int _raisedEventTolerance = 500;
     private const int NbMeasuresToComputeFlow = 10;
     private const string Unit = "l";
     private readonly Queue<(DateTime Time, int Value)> _lastMeasurements = new();
@@ -30,6 +29,7 @@ public class FlowMeter : BaseComponent, IMeasurableComponent<int>
     private DateTime _lastMeasureTime = DateTime.MinValue;
     private int _initialValue = 0;
     private int _totalValue = 0;
+    private int _stabilizationTime = 3000;
 
     #endregion Private Fields
 
@@ -104,6 +104,15 @@ public class FlowMeter : BaseComponent, IMeasurableComponent<int>
     }
 
     /// <summary>
+    /// Gets or sets the stabilization time in [ms].
+    /// </summary>
+    public int StabilizationTime
+    {
+        get => _stabilizationTime;
+        set => SetField(ref _stabilizationTime, value);
+    }
+
+    /// <summary>
     /// Gets the measures of the GPIO component.
     /// </summary>
     public List<Measure<int>> Measures { get; } =
@@ -117,7 +126,7 @@ public class FlowMeter : BaseComponent, IMeasurableComponent<int>
 
     private void OnPinValueChanged(object sender, PinValueChangedEventArgs pinValueChangedEventArgs)
     {
-        if (!Enable || _lastMeasureTime.AddMilliseconds(_raisedEventTolerance) > DateTime.UtcNow) return;
+        if (!Enable || _lastMeasureTime.AddMilliseconds(_stabilizationTime) > DateTime.UtcNow) return;
         _lastMeasureTime = DateTime.UtcNow;
         _lastMeasureTime = DateTime.UtcNow;
         CurrentValue++;

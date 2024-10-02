@@ -32,6 +32,9 @@
     <MudItem xs="6">
         <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="ShowResetTotalCountDialog">Reset total count</MudButton>
     </MudItem>
+    <MudTooltip Text="Time during the flow meter doesn't count any values">
+        <MudTextField Style="width:100%" Label="Stabilization time [ms]" T="int" @bind-Value="Component.StabilizationTime" />
+    </MudTooltip>
 </MudGrid>
 
 
