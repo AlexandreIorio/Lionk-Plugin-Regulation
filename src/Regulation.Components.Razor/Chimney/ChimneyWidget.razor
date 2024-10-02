@@ -1,5 +1,6 @@
 ﻿@using Lionk.Core.Component
 @using Lionk.Core.View
+@using Lionk.Rpi.Gpio
 @using Lionk.TemperatureSensor
 @using MudBlazor
 @using System.ComponentModel
@@ -84,6 +85,15 @@
             if (Component.OutputSensor is not null)
             {
                 Component.OutputSensor.PropertyChanged += SubComponentChanged;
+            }
+        }
+
+        if (Component.ChimneySensorPowerId != Guid.Empty)
+        {
+            Component.ChimneySensorPower = (OutputGpio?)ComponentService.GetInstanceById(Component.ChimneySensorPowerId);
+            if (Component.ChimneySensorPower is not null)
+            {
+                Component.ChimneySensorPower.PropertyChanged += SubComponentChanged;
             }
         }
     }
