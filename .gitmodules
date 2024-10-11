@@ -1,4 +1,3 @@
-[submodule "Lionk"]
-	url = git@github.com:alexandreIorio/Lionk.git
-[submodule "Lionk-Rpi-Component"]
-	url = git@github.com:alexandreIorio/Lionk-rpi-components.git
+[submodule "Lionk-rpi-components"]
+	path = Lionk-rpi-components
+	url = git@github.com:AlexandreIorio/Lionk-rpi-components.git
