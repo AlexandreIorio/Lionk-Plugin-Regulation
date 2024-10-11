@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Lionk-Rpi-Component\src\Lionk.Rpi.Gpio.Razor\Lionk.Rpi.Gpio.Razor.csproj" />
+    <ProjectReference Include="..\..\Lionk-rpi-components\src\Lionk.Rpi.Gpio.Razor\Lionk.Rpi.Gpio.Razor.csproj" />
     <ProjectReference Include="..\Regulation.Components\Regulation.Components.csproj" />
   </ItemGroup>
 
